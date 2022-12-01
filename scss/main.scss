@@ -1,0 +1,163 @@
+@use 'abstract/index' as *;
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: $main-font;
+    background-image: linear-gradient(-45deg,$primary-900, $primary-400);
+    color: $text-light;
+}
+.game_container {
+    width: 100vmin;
+    height: 80vmin;
+
+    .cards_container {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+    }
+
+}
+
+
+.card {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    color: white;
+    perspective: 1000px;
+
+
+    .card_inner {
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: all .5s ease;
+    
+        &.flip {
+            transform: rotateY(180deg)
+        }
+    
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            backface-visibility: hidden;
+        }
+    
+        .front {
+           background: url('../images/card2.webp') no-repeat center center/cover;
+        }
+        .back {
+            transform: rotateY(180deg);
+
+            img {
+                width: 80%;
+            }
+        }
+    }
+
+    .target {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: red;
+        z-index: 3;
+        opacity: 0;
+    }
+}
+
+.game_menu_container {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 70%;
+    max-width: 300px;
+    display: flex;
+    overflow-y: auto;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 2rem;
+    color: $text-light;
+    background-color: $primary-900;
+    transition: all .5s ease;
+
+    @include lg {
+        left: -300px;
+    }
+    
+    &.show {
+        left: 0px;
+    }
+
+    .game_menu {
+
+        ul {
+
+            margin-top: 2rem;
+            li {
+                text-align: center;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                background-color: $primary-800;
+                transition: all .5s ease;
+
+                &:hover {
+                    opacity: .7;
+                }
+
+                &.active {
+                    background-color: $primary-300;
+                }
+            }
+        }
+        
+    }
+    #close_menu_btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        transition: all .5s ease;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+    
+}
+
+#menu_toggler {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    padding: 1rem;
+    cursor: pointer;
+        transition: all .5s ease;
+
+        &:hover {
+            opacity: 0.7;
+        }
+}
+
+#message_modal {
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    top: 0;
+    z-index: 99;
+    background-color: $yellow-200;
+    color: $text-dark;
+    padding: .5rem ;
+}

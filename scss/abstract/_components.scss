@@ -1,0 +1,13 @@
+@use 'variables' as *;
+// Buttons
+@mixin btn {
+    border: none;
+    cursor: pointer;
+    // outline: none;
+    white-space: nowrap;
+    margin-top: var(--sp1);
+    display: inline-block;
+    border-radius: 3px; 
+    transition:all .3s ease;
+    
+};

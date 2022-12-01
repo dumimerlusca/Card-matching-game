@@ -1,0 +1,263 @@
+@use 'index' as *;
+
+// Text color classes
+.text-light {color: $text-light}
+.text-dark {color: $text-dark}
+
+@each $key, $val in $colors {
+    .text-#{$key} {
+        color: $val;
+    }
+};
+@each $key, $val in $primaryColors {
+    .text-#{$key} {
+        color: $val;
+    }
+};
+@each $key, $val in $secondaryColors {
+    .text-#{$key} {
+        color: $val;
+    }
+};
+
+// Background classes
+@each $key, $val in $primaryColors {
+    .bg-#{$key} {
+        background-color: $val;
+    }
+};
+@each $key, $val in $colors {
+    .bg-#{$key} {
+        background-color: $val;
+    }
+};
+
+@each $key, $val in $secondaryColors {
+    .bg-#{$key} {
+        background-color: $val;
+    }
+}
+
+// Button classes
+.btn {
+    @include btn();
+    padding: var(--sp1) var(--sp3);
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+/* Classes for scroll animation */
+.animate_top {animation: animationFromTop $speed ease-in forwards;}
+.animate_right {animation: animationFromRight $speed ease-in forwards;}
+.animate_left {animation: animationFromLeft $speed ease-in forwards;}
+.animate_bottom {animation: animationFromBottom $speed ease-in forwards;}
+
+/* Keyframes for scroll animation */
+@keyframes animationFromTop{from{transform:translateY(-100px);opacity:0}to{transform:translateY(0);opacity:1}}@keyframes animationFromRight{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}@keyframes animationFromLeft{from{transform:translateX(-100px);opacity:0}to{transform:translateX(0);opacity:1}}@keyframes animationFromBottom{from{transform:translateY(100px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+
+// Font size classes 
+.title-size {font-size: var(--title-size);}
+.h1 {font-size: var(--h1);}
+.h2 {font-size: var(--h2);}
+.h3 {font-size: var(--h3);}
+.h4 {font-size: var(--h4);}
+.h5 {font-size: var(--h5);}
+.h6 {font-size: var(--h6);}
+.thin {font-weight: 300;}
+.italic {font-style: italic;}
+
+// Layout classes
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0px var(--sp2);
+}
+.flex {display: flex;}
+.flex-column{display: flex; flex-direction: column;}
+.flex-1 {flex: 1;}
+.flex-2 {flex:2;}
+.flex-3 {flex:3;}
+.flex-4 {flex:4;}
+.grid {display: grid;}
+.columns2 {grid-template-columns: repeat(2,1fr);}
+.columns3 {grid-template-columns: repeat(2,1fr);}
+
+// Other utitlitys
+.overflow-hidden {overflow: hidden;}
+
+// Utilities based on sizes
+$utilitiesSizes: (
+    "padding": (
+        "prefix": "p"
+    ),
+    "padding-left": (
+        "prefix": "pl"
+    ),
+    "padding-right": (
+        "prefix": "pr"
+    ),
+    "padding-top": (
+        "prefix": "pt"
+    ),
+    "padding-bottom": (
+        "prefix": "pb"
+    ),
+    "margin": (
+        "prefix": "m"
+    ),
+    "margin-left": (
+        "prefix": "ml"
+    ),
+    "margin-right": (
+        "prefix": "mr"
+    ),
+    "margin-top": (
+        "prefix": "mt"
+    ),
+    "margin-bottom": (
+        "prefix": "mb"
+    ),
+    "gap": (
+        "prefix": 'gap'
+    ),
+);
+
+$paddingAndMarginX: (
+    'padding': (
+        'prefix': 'px'
+    ),
+    'margin': (
+        'prefix': 'mx'
+    ),
+);
+$paddingAndMarginY: (
+    'padding': (
+        'prefix': 'py'
+    ),
+    'margin': (
+        'prefix': 'my'
+    ),
+);
+
+@each $property, $map in $utilitiesSizes {
+    $prefix: map-get($map, 'prefix');
+
+    @each $key, $value in $spacers {
+        .#{$prefix}-#{$key} {
+            #{$property} : $value;
+        }
+    }
+};
+
+@each $property, $map in $paddingAndMarginX {
+    $prefix: map-get($map, 'prefix');
+
+    @each $key, $value in $spacers {
+        .#{$prefix}-#{$key} {
+            #{$property} : 0 $value;
+        }
+    }
+};
+
+@each $property, $map in $paddingAndMarginY {
+    $prefix: map-get($map, 'prefix');
+
+    @each $key, $value in $spacers {
+        .#{$prefix}-#{$key} {
+            #{$property} : $value 0;
+        }
+    }
+};
+
+
+    // Other utilities
+$utilities: (
+    "display": (
+        "prefix": 'd',
+        "values": (
+            'inline': inline,
+            'block': block,
+            'iblock': inline-block,
+        )
+    ),
+    "justify-content": (
+        "prefix": 'justify-content',
+        "values": (
+            'center': center,
+            'start': flex-start,
+            'end': flex-end,
+            'between': space-between,
+            'evenly': space-evenly,
+            'around': space-around,
+        )
+    ),
+    "align-items": (
+        "prefix": 'align-items',
+        'values': (
+            'center': center,
+            'start': flex-start,
+            'end': flex-end,
+        )
+    ),
+    "text-align": (
+        'prefix': 'text',
+        'values': (
+            'center':center,
+            'left':left,
+            'right':right,
+        )
+    ),
+    "text-transform": (
+        'prefix': 'text',
+        'values': (
+            'uppercase': uppercase,
+            'lowercase': lowercase,
+            'capitalized':capitalize,
+        )
+    ),
+    "margin": (
+        'prefix':'m',
+        'values' :(
+            'auto':auto
+        )
+    ),
+    "font-weight": (
+        'prefix': 'fw',
+        'values': (
+            '100': 100,
+            '200': 200,
+            '300': 300,
+            '400': 400,
+            '500': 500,
+            '600': 600,
+            '700': 700,
+        )
+    ),
+    "animation-delay": (
+        'prefix': 'delay',
+        'values': (
+            '1': 0.1s,
+            '2': 0.2s,
+            '3': 0.3s,
+            '4': 0.4s,
+            '5': 0.5s,
+            '6': 0.6s,
+        )
+    )
+
+);
+
+@each $property, $map in $utilities {
+    $prefix: map-get($map, 'prefix');
+    $values: map-get($map, "values");
+
+    @each $key, $value in $values {
+        .#{$prefix}-#{$key} {
+            #{$property} : $value;
+        }
+    }
+};

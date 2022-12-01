@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;600;700&display=swap");
+*, ::after, ::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+
+h1 {
+  font-size: var(--h1);
+}
+
+h2 {
+  font-size: var(--h2);
+}
+
+h3 {
+  font-size: var(--h3);
+}
+
+h4 {
+  font-size: var(--h4);
+}
+
+h5 {
+  font-size: var(--h5);
+}
+
+:root {
+  --title-size: 3.7rem;
+  --h1: 2.3rem;
+  --h2: 1.8rem;
+  --h3: 1.35rem;
+  --h4: 1rem;
+  --h5: 0.85rem;
+  --h6: 0.75rem;
+}
+@media (max-width: 968px) {
+  :root {
+    --title-size: 3rem;
+    --h1: 2.3rem;
+    --h2: 1.65rem;
+    --h3: 1.35rem;
+    --h4: 1rem;
+    --h5: 0.85rem;
+    --h6: 0.75rem;
+  }
+}
+@media (max-width: 568px) {
+  :root {
+    --title-size: 2.5rem;
+    --h1: 1.8rem;
+    --h2: 1.5rem;
+    --h3: 1.2rem;
+    --h4: 0.9rem;
+    --h5: 0.85rem;
+    --h6: 0.75rem;
+  }
+}
+
+:root {
+  --sp0:0.25rem;
+  --sp1:0.5rem;
+  --sp2:1rem;
+  --sp3:1.5rem;
+  --sp4:3rem;
+  --sp5:5rem;
+  --sp6:7rem;
+}
+@media (max-width: 568px) {
+  :root {
+    --sp0:0.25rem;
+    --sp1:0.5rem;
+    --sp2:0.9rem;
+    --sp3:1.2rem;
+    --sp4:1.6rem;
+    --sp5:2.3rem;
+    --sp6:4.5rem;
+  }
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background-image: linear-gradient(-45deg, #010008, #363554);
+  color: #ebf9fc;
+}
+
+.game_container {
+  width: 100vmin;
+  height: 80vmin;
+}
+.game_container .cards_container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.card {
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  color: white;
+  perspective: 1000px;
+}
+.card .card_inner {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+.card .card_inner.flip {
+  transform: rotateY(180deg);
+}
+.card .card_inner .front, .card .card_inner .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  backface-visibility: hidden;
+}
+.card .card_inner .front {
+  background: url("../images/card2.webp") no-repeat center center/cover;
+}
+.card .card_inner .back {
+  transform: rotateY(180deg);
+}
+.card .card_inner .back img {
+  width: 80%;
+}
+.card .target {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  z-index: 3;
+  opacity: 0;
+}
+
+.game_menu_container {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 70%;
+  max-width: 300px;
+  display: flex;
+  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 2rem;
+  color: #ebf9fc;
+  background-color: #010008;
+  transition: all 0.5s ease;
+}
+@media (max-width: 968px) {
+  .game_menu_container {
+    left: -300px;
+  }
+}
+.game_menu_container.show {
+  left: 0px;
+}
+.game_menu_container .game_menu ul {
+  margin-top: 2rem;
+}
+.game_menu_container .game_menu ul li {
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #020110;
+  transition: all 0.5s ease;
+}
+.game_menu_container .game_menu ul li:hover {
+  opacity: 0.7;
+}
+.game_menu_container .game_menu ul li.active {
+  background-color: #68677f;
+}
+.game_menu_container #close_menu_btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.game_menu_container #close_menu_btn:hover {
+  opacity: 0.7;
+}
+
+#menu_toggler {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+#menu_toggler:hover {
+  opacity: 0.7;
+}
+
+#message_modal {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  top: 0;
+  z-index: 99;
+  background-color: #ffe69c;
+  color: #2a3535;
+  padding: 0.5rem;
+}

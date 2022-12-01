@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card matching game</title>
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/abstract/myCssLibrary.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="game_container">
+        <div class="cards_container">
+            <div class="card">
+                <div class="card_inner">
+                    <div class="front">
+                        <h1>H</h1>
+                    </div>
+                    <div class="back">
+                        <img src="images/img1.png" alt="">
+                    </div>
+                    <div class="target"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="game_menu_container show">
+        <nav class="game_menu">
+            <h1>Choose difficulty</h1>
+            <ul>
+                <li class="active" data-cards-nr="12">12 Card</li>
+                <li data-cards-nr="16">16 Card</li>
+                <li data-cards-nr="20">20 Card</li>
+                <li data-cards-nr="24">24 Card</li>
+                <li data-cards-nr="30">30 Card</li>
+            </ul>
+        </nav>
+        <i id="close_menu_btn" class="fas fa-times fa-2x"></i>
+    </div>
+
+    <i id="menu_toggler" class="fas fa-bars fa-2x"></i>
+    
+
+
+    <script src="script.js"></script>
+</body>
+</html>
